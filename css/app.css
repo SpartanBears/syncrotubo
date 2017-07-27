@@ -1,0 +1,19 @@
+#appContainer{
+
+	height: 100vh;
+}
+
+#viewerContainer{
+
+	height: 75%;
+}
+
+#miscContainer{
+
+	height: 25%;
+}
+
+.fh{
+
+	height: 100%;
+}
