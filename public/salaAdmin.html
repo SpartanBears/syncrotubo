@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>	
+	    <script type="text/javascript" src="/javascripts/video.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="/stylesheets/sala.css">
+
+		<title>SyncoTube</title>
+
+	    <script type="text/javascript">
+			var url = window.location.href;  
+			var sala = url.split(":")[3];
+			var idSala = sala;
+			var idS = parseInt(idSala);
+
+			window.onload=asignarSala();
+			
+			function asignarSala(idSala){
+				salaFunction(idSala);
+
+			};
+		</script>
+
+	</head>
+	<body>
+
+		<div class="container">
+			<h2 align="center">SyncoTube</h2>
+
+			<div class="jumbotron">
+
+				<div class="row">
+
+					<!--Youtube Player-->  
+
+					<div class="col-xs-12 col-md-8">
+						<div id="yt">
+		       				<div id="player"></div>
+		        			<div id="ytcontrols">
+	        					<input type="button" class="btn btn-info" id="inicio" value="Start" onclick="loadYTVideo();">
+					            <input type="button" class="btn btn-info" id="btnPlay" value="Play" onclick="playVideo();">
+					            <input type="button" class="btn btn-info" id="btnStop" value="Stop" onclick="stopVideo();">
+		        			</div> 
+		      			</div>
+
+				    </div> 	  
+					<!--Playlist-->  
+					<div class="col-xs-6 col-md-4">
+						<div id="video-playlist" class="video-playlist">
+					        <header class="playlist">PLAYLIST</header>
+					        <ul id="video">
+					       	<%if(videos.length>0){%>
+					       	<%var i;%>
+					        	<%for(i=0; i<videos.length; i++){%>
+						        	<%var id = videos[i].url %>
+									<li><%=id%></li>  
+							    <%}%>
+					        <%}%>
+					        </ul>
+					        <!--Agregar Video-->  
+					        <form id="videoURL">
+					            <input type="text" placeholder="Video URL" name="idVideo" id="idVideo" required>
+					            <button  class="btn btn-info" type="submit" id="btn">Agregar Video</button>
+						    </form>
+						    
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="alert alert-error" id="idYouTubeAlert" style="display:none;">
+		                <button data-hide="alert" type="button" class="close">&times;</button>
+		                You must provide a YouTube video ID :(
+					</div>
+				</div>
+				<div class="row">
+					<!--Mensajes-->  
+					<ul id="message"></ul>
+					<div id="controls">
+						<!--Escribir Mensajes-->  
+						<form id="mensaje">			
+							<input type="text" id="msj" placeholder="Escribe tu mensaje...">
+							<input type="submit" class="btn btn-info" id="btn" value="Enviar">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

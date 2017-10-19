@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="stylesheets/salasChat.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="//goo.gl/yDbmRB" rel="stylesheet">
+		<link href="//goo.gl/HLXxEE" rel="stylesheet">
+
+		<title>SyncoTube</title>
+	
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<!--Lista Salas-->  
+				<h1>Salas</h1>
+				<ul>
+					<%if(salas.length>0){%>
+						<%for(i = 0; i < salas.length; i++ ){%>
+							<%var id = salas[i].idSala %>
+						  	<li><div id="<%=id%>" type="button" onclick="salaI('<%=id%>')" class="box"><i class="fa fa-check-circle fa-3x"></i><h2><%=salas[i].nombre %></h2></div></li>
+						<%}%>
+					<%}%>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function salaI(id) 
+			{ 
+				window.location = ("/sala/:"+id);
+			}		
+		</script>			
+	</body>
+</html>
